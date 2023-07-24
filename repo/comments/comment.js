@@ -61,5 +61,19 @@ export const updateCommentsRepo = async (id) => {
     } catch (err) {
 
         throw new Error(err.message);
+    };
+};
+
+
+export const deleteCommentRepo = async (id) => {
+
+    try {
+
+        const del = await Comment.findByIdAndDelete(id);
+
+        return del;
+        
+    } catch(err) {
+        throw new Error(`Failed to Delete Comment = ${err.message}`);
     }
 }
