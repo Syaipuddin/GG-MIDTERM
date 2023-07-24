@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const commentSchema = new Schema({
+    videoId : {
+        required : true,
+        type : String
+    },
     comment : {
         required : true,
         type : String,

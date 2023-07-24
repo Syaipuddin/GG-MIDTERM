@@ -6,6 +6,10 @@ const productSchema = new Schema({
         required : true,
         type : Number
     },
+    videoId : {
+        required : true,
+        type : String
+    },
     title : {
         required : true,
         type : String

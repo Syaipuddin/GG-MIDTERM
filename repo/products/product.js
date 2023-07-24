@@ -6,6 +6,7 @@ export const addProductRepo = async (body) => {
 
         const newProduct = new Product({
             productId : Product.length + 1,
+            videoId : body.videoId,
             title : body.title,
             price : body.price,
             url : body.url,
@@ -57,6 +58,7 @@ export const updateProductRepo = async (id, body) => {
     try {
 
         const updatedProduct = {
+            videoId : videoId || body.videoId,
             title : title || body.title,
             price : price || body.price,
             url : url || body.url,

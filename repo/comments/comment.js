@@ -5,7 +5,7 @@ export const addCommentRepo = async (body) => {
     try {
 
         const newComment = new Comment({
-            productId : body.productId,
+            videoId : body.videoId,
             userId : body.userId,
             comment : body.comment,
             createdAt : Date.now()

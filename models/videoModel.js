@@ -10,6 +10,16 @@ const videoSchema = new Schema({
         required : true,
         type: String
     }, 
+    products : [
+        {
+            productId : String,
+        }
+    ],
+    comments : [
+        {
+            commentId : String,
+        }
+    ],
     url : {
         required : true,
         type: String
