@@ -2,22 +2,20 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const videoSchema = new Schema({
-    videoId : {
-        required: true,
-        type: Number
-    },
     title : {
         required : true,
-        type: String
+        type: String,
     }, 
     products : [
         {
-            productId : String,
+            productId : {type : Schema.Types.ObjectId, ref : "Products" },
+            _id : false
         }
     ],
     comments : [
         {
-            commentId : String,
+            commentId : { type : Schema.Types.ObjectId, ref : "Comment" },
+            _id : false
         }
     ],
     url : {

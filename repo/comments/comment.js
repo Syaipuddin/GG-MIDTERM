@@ -1,6 +1,6 @@
-import { Comment } from "../../models/commentModel";
+import { Comment } from "../../models/commentModel.js";
 
-export const addCommentRepo = async (videoId, username, commen) => {
+export const addCommentRepo = async (videoId, username, comment) => {
 
     try {
 
@@ -11,8 +11,8 @@ export const addCommentRepo = async (videoId, username, commen) => {
             createdAt : Date.now()
         })
 
-        const comment = await newComment.save();
-        return comment;
+        const saved = await newComment.save();
+        return saved;
 
     } catch(err) {
 
@@ -51,16 +51,16 @@ export const getCommentByIDRepo = async (id) => {
 
 };
 
-export const updateCommentsRepo = async (id) => {
+export const updateCommentsRepo = async (id, username, comment) => {
 
     try {
 
-        const comment = {
-            username: username,
+        const updated = await Comment.findByIdAndUpdate(id, {
+            username : username,
             comment : comment
-        }
+        });
 
-        return comment;
+        return updated;
 
     } catch (err) {
 
@@ -73,9 +73,7 @@ export const deleteCommentRepo = async (id) => {
 
     try {
 
-        const del = await Comment.findByIdAndDelete(id);
-
-        return del;
+        await Comment.findByIdAndDelete(id);
         
     } catch(err) {
         throw new Error(`Failed to Delete Comment = ${err.message}`);

@@ -4,6 +4,10 @@ import mongoose from 'mongoose';
 
 import appRoutes from '../route/routes.js';
 
+// CLOUDINARY CONFIG
+import { cldConfig } from '../helper/cloudinary.js';
+cldConfig();
+
 const app = express();
 dotenv.config();
 

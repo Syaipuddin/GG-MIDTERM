@@ -7,6 +7,8 @@ import {
 } from '../repo/products/product.js';
 import { getVideoByIDRepo } from '../repo/videos/video.js';
 
+import {v2 as cloudinary} from 'cloudinary';
+
 export const getProductsUsecase = () => {
 
     return getProductsRepo();
@@ -19,17 +21,17 @@ export const getProductByIDUsecase = (id) => {
 
 };
 
-export const addProductUsecase = async (body) => {
+export const addProductUsecase = async (title, price, url, image) => {
 
-    if(!body.title || !body.url ||  !body.file) {
-        throw new Error(`Body tidak valid!`)
+    if(!title|| !price || !url || !image){
+        throw new Error(`Body tidak lengkap!`);
     };
 
     try {
-        // validation
-        await getVideoByIDRepo(body.videoId);
 
-        return addProductRepo(body);
+        const upload = await cloudinary.uploader.upload(image.path);
+
+        return addProductRepo(title, price, url, upload.secure_url);
 
     } catch(err ) {
 
@@ -38,13 +40,19 @@ export const addProductUsecase = async (body) => {
 
 };
 
-export const updateProductUsecase = (id, body) => {
+export const updateProductUsecase = async (id, title, price, url, image) => {
 
-    if(!body.videoId || !body.title || !body.url ||  !body.file) {
+    if(!title && !price && !image) {
         throw new Error(`Masukkan Body untuk Update!`);
     };
 
-    return updateProductRepo(id, body);
+    if(!image) {
+        return updateProductRepo(id, title, price, url);
+    };
+    
+    const upload = await cloudinary.uploader.upload(image.path);
+
+    return updateProductRepo(id, title, price, url, upload.secure_url);
 
 };
 

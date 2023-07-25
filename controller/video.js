@@ -2,6 +2,7 @@ import {
     getVideosUsecase,
     getVideoByIDUsecase,
     addVideoUsecase,
+    addProductToVideoUsecase,
     updateVideoUsecase,
     deleteVideoUsecase
 } from '../usecases/video.js';
@@ -27,7 +28,7 @@ export const getVideos  =  async(req, res) => {
 export const getVideoByID = async (req, res) => {
 
     try {
-        const {id} = req.params.id;
+        const {id} = req.params;
         const video = await getVideoByIDUsecase(id);
 
         res.json({
@@ -60,16 +61,34 @@ export const addVideo = async (req, res) => {
     }
 };
 
+export const addProductToVideo = async (req, res) => {
+
+    try {
+        const {videoId, productId} = req.params;
+
+        await addProductToVideoUsecase(videoId, productId);
+
+        res.status(201).json({
+            message : `Berhasil menambahkan Produk ${productId} ke Video ${videoId}`
+        });
+    } catch(err) {
+
+        res.status(500).json({
+            error : err.message
+        })
+    }
+}
+
 export const updateVideo = async (req, res) => {
 
     try {
         const {id} = req.params;
-        const {title, url} = req.params;
+        const {title, url} = req.body;
 
-        const updated = await updateVideoUsecase(id. title, url);
+        await updateVideoUsecase(id, title, url);
 
         res.json({
-            updatedItem : updated,
+            message : `item dengan id ${id} telah diupdate`,
         });
 
     } catch(err) {
@@ -85,10 +104,10 @@ export const deleteVideo = async (req, res) => {
     try {
         const {id} = req.params;
         
-        const deleted = await deleteVideoUsecase(id);
+        await deleteVideoUsecase(id);
 
         res.json({
-            deletedItem : deleted
+            message : `item dengan id ${id} telah berhasil dihapus`
         });
     } catch(err) {
 

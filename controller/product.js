@@ -27,6 +27,8 @@ export const getProductByID = async (req, res) => {
 
     try {
 
+        const {id} = req.params;
+
         const product = await getProductByIDUsecase(id);
 
         res.json({
@@ -40,12 +42,13 @@ export const getProductByID = async (req, res) => {
     };
 };
 
-export const addProduct = async (req, res) => {
+export const addProduct = async (req, res, next) => {
 
     try {
-        const {videoId, title, price, image} = req.body;
+        const {title, price, url} = req.body;
 
-        const response = await addProductUsecase(videoId, title, price, image); 
+
+        const response = await addProductUsecase(title, price, url, req.file); 
 
         res.json({
             data : response,
@@ -61,12 +64,15 @@ export const addProduct = async (req, res) => {
 export const updateProduct = async (req, res) => {
 
     try {
-        const {videoId, title, price, image} = req.body;
 
-        const result = await updateProductUsecase(videoId, title, price, image);
+        const {id} = req.params;
+
+        const {title, price, url} = req.body;
+
+        await updateProductUsecase(id, title, price, url, req.file);
 
         res.json({
-            updatedItem : result,
+            message : `item dengan id ${id} telah diupdate`,
         });
     } catch (err) {
 
@@ -82,10 +88,10 @@ export const deleteProduct = async (req, res) => {
 
         const {id} = req.params;
 
-        const deleted = await deleteProductUsecase(id);
+        await deleteProductUsecase(id);
 
         res.json({
-            deletedItems :  deleted,
+            message :  `item dengan id ${id} telah dihapus`,
         });
     } catch(err) {
 

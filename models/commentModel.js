@@ -6,6 +6,10 @@ const commentSchema = new Schema({
         required : true,
         type : String
     },
+    username : {
+        required : true,
+        type : String
+    },
     comment : {
         required : true,
         type : String,
@@ -16,4 +20,4 @@ const commentSchema = new Schema({
     }
 })
 
-export const Comment = mongoose.model('Comment', commentSchema);
+export const Comment = mongoose.model('Comments', commentSchema);

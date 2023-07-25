@@ -1,11 +1,10 @@
-import { Video } from "../../models/videoModel";
+import { Video } from "../../models/videoModel.js";
 
 export const addVideoRepo = async (title, url) => {
 
 try {
 
     const newVideo = new Video({
-        videoId : Video.length + 1,
         title : title,
         url : url,
         createdAt : Date.now()
@@ -21,6 +20,18 @@ try {
 
 };
 
+export const addProductToVideoRepo = async (videoId, productId) => {
+
+    try {
+
+        await Video.findByIdAndUpdate(videoId, {
+            $push : {products : {productId : productId}}
+        });
+    } catch (err) {
+
+        throw new Error(err.message);
+    }
+};
 
 export const getVideosRepo = async () => {
 
@@ -41,8 +52,9 @@ export const getVideoByIDRepo = async (id) => {
 
     try {
 
-        const video = await Video.findById();
-
+        const video = await Video.findById(id).populate([
+            {path : 'products', populate : { path : 'productId'}, model :'Products'}
+        ]).exec();
         return video;
 
     } catch (err) {
@@ -69,8 +81,22 @@ export const updateVideoRepo = async (id, title, url) => {
     } catch (err) {
 
         throw new Error(err.message);
-    }
+    };
 
+};
+
+export const addCommentToVideoRepo = async (videoId, commentId) => {
+
+    try {
+        
+        await Video.findByIdAndUpdate(videoId, {
+            $push: {comments : commentId}
+        });
+
+    } catch(err) {
+
+        throw new Error(err.message);
+    }
 }
 
 export const deleteVideoRepo = async (id) => {
@@ -79,10 +105,9 @@ export const deleteVideoRepo = async (id) => {
 
         await Video.findByIdAndDelete(id);
 
-        return true;
-
     } catch (err) {
 
         throw new Error(err.message);
-    }
+    };
 }
+
