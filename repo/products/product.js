@@ -9,12 +9,12 @@ export const addProductRepo = async (body) => {
             videoId : body.videoId,
             title : body.title,
             price : body.price,
-            url : body.url,
+            image : body.image,
             createdAt : Date.now()
         });
 
-        await newProduct.save();
-        return true;
+        const product = await newProduct.save();
+        return product;
 
     } catch (err) {
 
@@ -61,14 +61,14 @@ export const updateProductRepo = async (id, body) => {
             videoId : videoId || body.videoId,
             title : title || body.title,
             price : price || body.price,
-            url : url || body.url,
+            image : url || body.url,
 
             // didn't include this in models since this only exists when updating
             updatedAt : Date.now()
         }
 
-        await Product.findByIdAndUpdate(id, updatedProduct)
-        return updatedProduct;
+        const product = await Product.findByIdAndUpdate(id, updatedProduct)
+        return product;
 
     } catch(err) {
 

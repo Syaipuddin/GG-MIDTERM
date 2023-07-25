@@ -45,7 +45,9 @@ export const getVideoByID = async (req, res) => {
 export const addVideo = async (req, res) => {
 
     try {
-        const video = await addVideoUsecase(req.body);
+        const { title, url } = req.body;
+
+        const video = await addVideoUsecase(title, url);
 
         res.status(201).json({
             data : video,
@@ -62,10 +64,12 @@ export const updateVideo = async (req, res) => {
 
     try {
         const {id} = req.params;
-        const updated = await updateVideoUsecase(id. req.body);
+        const {title, url} = req.params;
+
+        const updated = await updateVideoUsecase(id. title, url);
 
         res.json({
-            data : update,
+            data : updated,
         });
 
     } catch(err) {
@@ -80,6 +84,7 @@ export const deleteVideo = async (req, res) => {
 
     try {
         const {id} = req.params;
+        
         const deleted = await deleteVideoUsecase(id);
 
         res.json({

@@ -20,24 +20,24 @@ export const getVideoByIDUsecase = (id) => {
     return getVideoByIDRepo(id);
 }
 
-export const addVideoUsecase = (body) => {
+export const addVideoUsecase = (title, url) => {
 
-    if(!body.title || !body.url) {
+    if(!title || !url) {
         throw new Error(`Title dan Url tidak Valid!`);
     };
 
-    return addVideoRepo(body);
+    return addVideoRepo(title, url);
 };
 
-export const updateVideoUsecase = (id, body) => {
+export const updateVideoUsecase = (id, title, url) => {
 
     if(!id) {
         throw new Error(`Mohon Masukkan ID!`)
-    } else if (!body.title || !body.url) {
+    } else if (!title || !url) {
         throw new Error(`Body Tidak Lengkap!`)
     }
 
-    return updateVideoRepo(id, body);
+    return updateVideoRepo(id, title, url);
 
 };
 

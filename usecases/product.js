@@ -7,7 +7,7 @@ import {
 } from '../repo/products/product.js';
 import { getVideoByIDRepo } from '../repo/videos/video.js';
 
-export const getProductUsecase = () => {
+export const getProductsUsecase = () => {
 
     return getProductsRepo();
 

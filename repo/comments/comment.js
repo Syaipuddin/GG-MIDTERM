@@ -11,8 +11,8 @@ export const addCommentRepo = async (body) => {
             createdAt : Date.now()
         })
 
-        await newComment.save();
-        return newComment;
+        const comment = await newComment.save();
+        return comment;
 
     } catch(err) {
 
@@ -55,8 +55,9 @@ export const updateCommentsRepo = async (id) => {
 
     try {
 
-        await Comment.findByIdAndDelete(id);
-        return true;
+        const comment = await Comment.findByIdAndDelete(id);
+
+        return comment;
 
     } catch (err) {
 

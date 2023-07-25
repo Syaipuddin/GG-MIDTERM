@@ -22,7 +22,7 @@ try {
 };
 
 
-export const getVideoRepo = async () => {
+export const getVideosRepo = async () => {
 
 try {
 
