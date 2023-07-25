@@ -2,6 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
+import appRoutes from '../route/routes.js';
+
 const app = express();
 dotenv.config();
 
@@ -21,6 +23,10 @@ export const rest = () => {
 
         db.once('connected', () => {
             console.log(`Database Connected`);
+
+            app.use(express.json());
+
+            app.use(appRoutes);
 
             app.listen(PORT, () => {
                 console.log(`App running on Port = ${PORT}`)

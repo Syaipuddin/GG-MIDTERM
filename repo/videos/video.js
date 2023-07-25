@@ -1,18 +1,18 @@
 import { Video } from "../../models/videoModel";
 
-export const addVideoRepo = async (body) => {
+export const addVideoRepo = async (title, url) => {
 
 try {
 
     const newVideo = new Video({
         videoId : Video.length + 1,
-        title : body.title,
-        url : body.url,
+        title : title,
+        url : url,
         createdAt : Date.now()
     });
 
-    await newVideo.save();
-    return true;
+    const video = await newVideo.save();
+    return video;
 
 } catch (err) {
 
@@ -52,13 +52,13 @@ export const getVideoByIDRepo = async (id) => {
     }
 }
 
-export const updateVideoRepo = async (id, body) => {
+export const updateVideoRepo = async (id, title, url) => {
 
     try {
 
         const updatedVideo = await Video.findByIdAndUpdate(id, {
-            title : title || body.title,
-            url : url || body.url,
+            title : title,
+            url : url,
             
             // didn't include this in model since this is only exists when updatin
             updatedAt : Date.now(),

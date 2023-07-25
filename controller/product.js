@@ -6,7 +6,7 @@ import {
     deleteProductUsecase
 } from '../usecases/product.js';
 
-export const getProduct = async (req, res) => {
+export const getProducts = async (req, res) => {
 
     try {
         
