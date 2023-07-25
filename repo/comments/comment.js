@@ -1,13 +1,13 @@
 import { Comment } from "../../models/commentModel";
 
-export const addCommentRepo = async (body) => {
+export const addCommentRepo = async (videoId, username, commen) => {
 
     try {
 
         const newComment = new Comment({
-            videoId : body.videoId,
-            userId : body.userId,
-            comment : body.comment,
+            videoId : videoId,
+            username : username,
+            comment : comment,
             createdAt : Date.now()
         })
 
@@ -55,7 +55,10 @@ export const updateCommentsRepo = async (id) => {
 
     try {
 
-        const comment = await Comment.findByIdAndDelete(id);
+        const comment = {
+            username: username,
+            comment : comment
+        }
 
         return comment;
 

@@ -6,10 +6,10 @@ export const addProductRepo = async (body) => {
 
         const newProduct = new Product({
             productId : Product.length + 1,
-            videoId : body.videoId,
-            title : body.title,
-            price : body.price,
-            image : body.image,
+            videoId :videoId,
+            title : title,
+            price : price,
+            image : image,
             createdAt : Date.now()
         });
 
@@ -53,15 +53,15 @@ export const getProductByIDRepo = async (id) => {
     };
 };
 
-export const updateProductRepo = async (id, body) => {
+export const updateProductRepo = async (id, videoId, title, price, url) => {
 
     try {
 
         const updatedProduct = {
-            videoId : videoId || body.videoId,
-            title : title || body.title,
-            price : price || body.price,
-            image : url || body.url,
+            videoId : videoId,
+            title : title,
+            price : price,
+            image : url,
 
             // didn't include this in models since this only exists when updating
             updatedAt : Date.now()

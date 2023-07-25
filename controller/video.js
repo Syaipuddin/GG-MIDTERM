@@ -69,7 +69,7 @@ export const updateVideo = async (req, res) => {
         const updated = await updateVideoUsecase(id. title, url);
 
         res.json({
-            data : updated,
+            updatedItem : updated,
         });
 
     } catch(err) {

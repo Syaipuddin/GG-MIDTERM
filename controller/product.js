@@ -66,7 +66,7 @@ export const updateProduct = async (req, res) => {
         const result = await updateProductUsecase(videoId, title, price, image);
 
         res.json({
-            data : result,
+            updatedItem : result,
         });
     } catch (err) {
 
