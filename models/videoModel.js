@@ -14,10 +14,13 @@ const videoSchema = new Schema({
     ],
     comments : [
         {
-            commentId : { type : Schema.Types.ObjectId, ref : "Comment" },
+            commentId : { type : Schema.Types.ObjectId, ref : "Comments" },
             _id : false
         }
     ],
+    thumb : {
+        type : String
+    },
     url : {
         required : true,
         type: String

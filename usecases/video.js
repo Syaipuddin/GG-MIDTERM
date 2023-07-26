@@ -9,9 +9,22 @@ import {
     addProductToVideoRepo
 } from '../repo/videos/video.js';
 
-export const getVideosUsecase = () => {
+export const getVideosUsecase = async () => {
 
-    return getVideosRepo();
+    const videos = await getVideosRepo();
+
+    videos.map((e) => 
+        { 
+            // EXTRACT ID FROM YT LINKS
+            const match = e.url.match(/^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/);
+            // IF THE MATCH LENGT 7 RETURN THE RESULT
+            const matchId =  (match&&match[7]) ? match[7] : (()=> {throw new Error(`Video ID not found`)});
+            const ytId = `https://img.youtube.com/vi/${matchId}/0.jpg`;
+
+            return e.thumb = ytId;
+        });
+
+    return videos;
 
 };
 
@@ -24,8 +37,6 @@ export const getVideoByIDUsecase = async (id) => {
     try {
 
         const video =  await getVideoByIDRepo(id);
-        const products = video.products.map(  (e)=>   getProductByIDRepo(e.productId));
-        const comments = video.comments.map(  (e)=>   getCommentByIDRepo(e.commentId));
 
         return video;
 

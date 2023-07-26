@@ -52,9 +52,11 @@ export const getVideoByIDRepo = async (id) => {
 
     try {
 
-        const video = await Video.findById(id).populate([
-            {path : 'products', populate : { path : 'productId'}, model :'Products'}
-        ]).exec();
+        // POPULATE COMMENTS AND PRODUCTS WHEN GETTING VIDEO DETAIL
+        const video = await Video.findById(id)
+            .populate([{path : 'products', populate : { path : 'productId'}, model :'Products'}])
+                .populate([{path : 'comments', populate : { path : 'commentId'}, model : "Comments"}]).exec();
+
         return video;
 
     } catch (err) {
