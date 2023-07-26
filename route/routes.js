@@ -3,7 +3,7 @@ const router = express.Router();
 
 import multer from 'multer';
 
-const upload = multer({dest : '../uploads/image'});
+const upload = multer({dest : './uploads/image'});
 
 import {
     getVideos, getVideoByID, addProductToVideo,  addVideo, updateVideo, deleteVideo, deleteProductFromVideo 
