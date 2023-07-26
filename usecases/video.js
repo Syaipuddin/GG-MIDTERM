@@ -1,5 +1,3 @@
-import { getProductByIDRepo } from '../repo/products/product.js';
-import { getCommentByIDRepo } from '../repo/comments/comment.js';
 import {
     getVideosRepo,
     getVideoByIDRepo,
@@ -37,6 +35,10 @@ export const getVideoByIDUsecase = async (id) => {
     try {
 
         const video =  await getVideoByIDRepo(id);
+
+        if(!video){
+            throw new Error(`Video tidak ditemukan`);
+        }
 
         return video;
 

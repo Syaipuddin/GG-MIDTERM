@@ -15,10 +15,15 @@ export const getProductsUsecase = () => {
 
 };
 
-export const getProductByIDUsecase = (id) => {
+export const getProductByIDUsecase = async (id) => {
 
-    return getProductByIDRepo(id);
+    const product = await getProductByIDRepo(id);
+    
+    if(!product) {
+        throw new Error(`Item tidak ditemukan`);
+    };
 
+    return product;
 };
 
 export const addProductUsecase = async (title, price, url, image) => {

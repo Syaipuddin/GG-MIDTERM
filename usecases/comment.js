@@ -13,13 +13,26 @@ export const getCommentsUsecase = () => {
 
 };
 
-export const getCommentByIDUsecase = (id) => {
+export const getCommentByIDUsecase = async (id) => {
 
     if(!id) {
         throw new Error(`Invalid ID`);
     };
 
-    return getCommentByIDRepo(id);
+    try {
+
+        const comment = await getCommentByIDRepo(id);
+
+        if(!comment) {
+            throw new Error(`Komen tidak ditemukan`);
+        }
+
+        return comment;
+
+    } catch(err) {
+
+        throw new Error(err.message);
+    }
 };
 
 export const addCommentUsecase = async (videoId, username, comment) => {

@@ -14,9 +14,3 @@ export const cldConfig = () => {
     });
 
 }
-
-
-export const uploader =  (file) => {
-
-    return cloudinary.uploader.upload(file);
-}
