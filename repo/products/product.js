@@ -18,7 +18,7 @@ export const addProductRepo = async (title, price, url, image) => {
 
     } catch (err) {
 
-        throw new Error(err.mesage);
+        throw new Error(`Failed to add Product = ${err.mesage}`);
 
     };
 };
@@ -48,7 +48,7 @@ export const getProductByIDRepo = async (id) => {
 
     } catch (err) {
 
-        throw new Error(err.mesage);
+        throw new Error(`Product Not Found!`);
 
     };
 };
@@ -67,7 +67,7 @@ export const updateProductRepo = async (id, title, price, url, image) => {
 
     } catch(err) {
 
-        throw new Error(err.message);
+        throw new Error(`Failed to Update Products ${err.message}`);
 
     };
 };
@@ -99,6 +99,6 @@ export const deleteVideoIDFromProduct = async (videoId, productId) => {
 
     } catch(err) {
 
-        throw new Error(err.message);
+        throw new Error(`Failed to delete videoId from product = ${err.message}`);
     }
 }

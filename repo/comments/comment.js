@@ -17,7 +17,7 @@ export const addCommentRepo = async (videoId, username, comment) => {
 
     } catch(err) {
 
-        throw new Error(err.message);
+        throw new Error(`Failed to add Comment = ${err.message}`);
 
     };
 };
@@ -47,7 +47,7 @@ export const getCommentByIDRepo = async (id) => {
 
     } catch (err) {
 
-        throw new Error(err.message);
+        throw new Error(`Comment Not Found`);
     };
 
 };
@@ -65,7 +65,7 @@ export const updateCommentsRepo = async (id, username, comment) => {
 
     } catch (err) {
 
-        throw new Error(err.message);
+        throw new Error(`Failed to Update Comment = ${err.message}`);
     };
 };
 

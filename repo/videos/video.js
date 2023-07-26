@@ -16,7 +16,7 @@ try {
 
 } catch (err) {
 
-    throw new Error(err.message);
+    throw new Error(`Failed to add Video ${err.message}`);
 };
 
 };
@@ -35,7 +35,7 @@ export const addProductToVideoRepo = async (videoId, productId) => {
 
     } catch (err) {
 
-        throw new Error(err.message);
+        throw new Error(`Failed to add Product to Video = ${err.message}`);
     }
 };
 
@@ -67,7 +67,7 @@ export const getVideoByIDRepo = async (id) => {
 
     } catch (err) {
 
-        throw new Error(err.message);
+        throw new Error(`Video Not Found = ${err.message}`);
 
     }
 }
@@ -88,7 +88,7 @@ export const updateVideoRepo = async (id, title, url) => {
 
     } catch (err) {
 
-        throw new Error(err.message);
+        throw new Error(`Failed to Update Video = ${err.message}`);
     };
 
 };
@@ -103,7 +103,7 @@ export const addCommentToVideoRepo = async (videoId, commentId) => {
 
     } catch(err) {
 
-        throw new Error(err.message);
+        throw new Error(`Failed to add Comment to Video = ${err.message}`);
     }
 }
 
@@ -129,7 +129,7 @@ export const deleteProductFromVideoRepo = async (videoId, productId) => {
         });
 
     } catch (err) {
-        throw new Error(err.message);
+        throw new Error(`failed to delete Product from Video = ${err.message}`);
     };
 };
 
@@ -145,7 +145,7 @@ export const deleteCommentsFromVideoRepo = async (videoId, commentId) => {
 
     } catch(err) {
 
-        throw new Error(err.message);
+        throw new Error(`Failed to Delete Comment from Video = ${err.message}`);
     }
 }
 
