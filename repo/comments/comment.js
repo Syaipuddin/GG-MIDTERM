@@ -1,5 +1,5 @@
 import { Comment } from "../../models/commentModel.js";
-import { Video } from '../../models/videoModel.js';
+import { deleteCommentsFromVideoRepo } from "../videos/video.js";
 
 export const addCommentRepo = async (videoId, username, comment) => {
 
@@ -76,11 +76,7 @@ export const deleteCommentRepo = async (id) => {
         const comment = await getCommentByIDRepo(id);
 
         // DELETE THE ID FROM VIDEOS
-        await Video.findByIdAndUpdate(comment.videoId, {
-            $pull : {
-                comments : { commentId : comment._id}
-            }
-        });
+        await deleteCommentsFromVideoRepo(comment.videoId, id);
 
         await Comment.findByIdAndDelete(id);
         

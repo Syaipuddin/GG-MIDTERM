@@ -117,5 +117,35 @@ export const deleteVideoRepo = async (id) => {
 
         throw new Error(err.message);
     };
+};
+
+export const deleteProductFromVideoRepo = async (videoId, productId) => {
+
+    try {
+        await Video.findByIdAndUpdate(videoId, {
+            $pull : {
+                products : {productId : productId}
+            }
+        });
+
+    } catch (err) {
+        throw new Error(err.message);
+    };
+};
+
+export const deleteCommentsFromVideoRepo = async (videoId, commentId) => {
+
+    try {
+
+        await Video.findByIdAndUpdate(videoId, {
+            $pull : {
+                comments : {commentId : commentId}
+            }
+        });
+
+    } catch(err) {
+
+        throw new Error(err.message);
+    }
 }
 

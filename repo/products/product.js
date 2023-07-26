@@ -1,5 +1,5 @@
 import { Product } from "../../models/productModel.js";
-import { Video } from "../../models/videoModel.js";
+import { deleteProductFromVideoRepo } from "../videos/video.js";
 
 export const addProductRepo = async (title, price, url, image) => {
 
@@ -78,11 +78,7 @@ export const deleteProductRepo = async (id) => {
 
         const product = await getProductByIDRepo(id);
 
-        await Video.findByIdAndUpdate(product.videoId, {
-            $pull : {
-                products : {productId : id}
-            }
-        })
+        await deleteProductFromVideoRepo(product.videoId, id);
 
         await Product.findByIdAndDelete(id);
 
@@ -90,5 +86,5 @@ export const deleteProductRepo = async (id) => {
 
         throw new Error(err.message);
 
-    }
-}
+    };
+};
