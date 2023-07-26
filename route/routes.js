@@ -6,7 +6,7 @@ import multer from 'multer';
 const upload = multer({dest : '../uploads/image'});
 
 import {
-    getVideos, getVideoByID, addProductToVideo, addVideo, updateVideo, deleteVideo 
+    getVideos, getVideoByID, addProductToVideo,  addVideo, updateVideo, deleteVideo, deleteProductFromVideo 
 } from '../controller/video.js';
 
 import {
@@ -27,6 +27,7 @@ router.patch('/video/add-product/:videoId/:productId', addProductToVideo);
 router.patch('/video/update/:id', updateVideo);
 
 router.delete('/video/delete/:id', deleteVideo);
+router.delete('/video/delete-product/:videoId/:productId', deleteProductFromVideo);
 
 // PRODUCT
 router.get('/products', getProducts);

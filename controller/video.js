@@ -4,7 +4,8 @@ import {
     addVideoUsecase,
     addProductToVideoUsecase,
     updateVideoUsecase,
-    deleteVideoUsecase
+    deleteVideoUsecase,
+    deleteProductFromVideoUsecase
 } from '../usecases/video.js';
 
 export const getVideos  =  async(req, res) => {
@@ -71,6 +72,25 @@ export const addProductToVideo = async (req, res) => {
         res.status(201).json({
             message : `Berhasil menambahkan Produk ${productId} ke Video ${videoId}`
         });
+    } catch(err) {
+
+        res.status(500).json({
+            error : err.message
+        });
+    };
+};
+
+export const deleteProductFromVideo = async (req, res) => {
+
+    try {
+
+        const {videoId, productId} = req.params;
+        await deleteProductFromVideoUsecase(videoId, productId);
+
+        res.status(201).json({
+            message : `berhasil menghapus item ${productId} dari video ${videoId}`
+        });
+
     } catch(err) {
 
         res.status(500).json({

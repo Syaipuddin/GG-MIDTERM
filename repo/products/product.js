@@ -88,3 +88,17 @@ export const deleteProductRepo = async (id) => {
 
     };
 };
+
+export const deleteVideoIDFromProduct = async (videoId, productId) => {
+    
+    try {
+
+        await Product.findByIdAndUpdate(productId, {
+            $unset : {videoId : 1}
+        });
+
+    } catch(err) {
+
+        throw new Error(err.message);
+    }
+}

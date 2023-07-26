@@ -1,10 +1,12 @@
+import { deleteVideoIDFromProduct } from '../repo/products/product.js';
 import {
     getVideosRepo,
     getVideoByIDRepo,
     addVideoRepo,
     updateVideoRepo,
     deleteVideoRepo,
-    addProductToVideoRepo
+    addProductToVideoRepo,
+    deleteProductFromVideoRepo
 } from '../repo/videos/video.js';
 
 export const getVideosUsecase = async () => {
@@ -65,9 +67,16 @@ export const addVideoUsecase = (title, url) => {
     return addVideoRepo(title, url);
 };
 
-export const addProductToVideoUsecase = async (videoId, productId) => {
+export const addProductToVideoUsecase = (videoId, productId) => {
 
-        return addProductToVideoRepo(videoId, productId);
+    return addProductToVideoRepo(videoId, productId);
+
+};
+
+export const deleteProductFromVideoUsecase = async (videoId, productId) => {
+
+    await deleteProductFromVideoRepo(videoId, productId);
+    await deleteVideoIDFromProduct(videoId, productId);
 
 }
 
@@ -88,7 +97,7 @@ export const updateVideoUsecase = (id, title, url) => {
         }
 
          return updateVideoRepo(id, title, url);
-         
+
     } else {
           // IF NO URL STRAIGHT TO UPDATE
         return updateVideoRepo(id, title);
