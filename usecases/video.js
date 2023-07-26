@@ -79,13 +79,22 @@ export const updateVideoUsecase = (id, title, url) => {
         throw new Error(`Body Tidak Lengkap!`)
     }
 
-    const ytUrl = url.match(/^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|live\/|v\/)?)([\w\-]+)(\S+)?$/);
+  
+    if(url) {
+        const ytUrl = url.match(/^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|live\/|v\/)?)([\w\-]+)(\S+)?$/);
 
-    if(!ytUrl) {
-        throw new Error(`URL harus menuju Ke Youtube!`)
+        if(!ytUrl) {
+            throw new Error(`URL harus menuju Ke Youtube!`)
+        }
+
+         return updateVideoRepo(id, title, url);
+         
+    } else {
+          // IF NO URL STRAIGHT TO UPDATE
+        return updateVideoRepo(id, title);
     }
 
-    return updateVideoRepo(id, title, url);
+    
 
 };
 

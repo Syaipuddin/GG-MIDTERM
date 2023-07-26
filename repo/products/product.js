@@ -76,6 +76,14 @@ export const deleteProductRepo = async (id) => {
 
     try {
 
+        const product = await getProductByIDRepo(id);
+
+        await Video.findByIdAndUpdate(product.videoId, {
+            $pull : {
+                products : {productId : id}
+            }
+        })
+
         await Product.findByIdAndDelete(id);
 
     } catch (err) {

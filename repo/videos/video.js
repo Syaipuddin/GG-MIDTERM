@@ -1,4 +1,5 @@
 import { Video } from "../../models/videoModel.js";
+import { Product } from '../../models/productModel.js';
 
 export const addVideoRepo = async (title, url) => {
 
@@ -27,6 +28,11 @@ export const addProductToVideoRepo = async (videoId, productId) => {
         await Video.findByIdAndUpdate(videoId, {
             $push : {products : {productId : productId}}
         });
+
+        await Product.findByIdAndUpdate(productId, {
+            videoId : videoId
+        });
+
     } catch (err) {
 
         throw new Error(err.message);
