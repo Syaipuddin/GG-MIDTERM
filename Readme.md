@@ -82,13 +82,13 @@ Return a Single Product
 
 ![addProduct](./md-images/API%20STRUCTURE/product/addProduct.png)
 
-Validating Product Body, and Post it to Database
+Validating Product Body, upload req.file (image) to cloudinary, return its url to Body and Post Body to Database
 
 **PATCH /product/update/:id**
 
 ![updateProduct](./md-images/API%20STRUCTURE/product/updateProduct.png)
 
-Validating Product ID, finds and updates it
+Validating Product ID, finds and updates image (if exist) and update the body
 
 **DELETE /product/delete/:id**
 
