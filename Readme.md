@@ -1,5 +1,12 @@
 # Generasi Gigih MID-TERM API Project
-- ## How to Run
+
+- [How to Run](#how-to-run)
+- [API Documentation](#api-documentation)
+- [Database Structure](#database-structure)
+- [API Structure](#api-structure)
+  - [Videos](#videos)
+  - [Product](#products)
+  - [Comments](#comments)
 
 ## How to Run
 
