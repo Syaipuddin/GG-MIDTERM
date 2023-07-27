@@ -16,11 +16,11 @@ export const getProductsUsecase = () => {
 
 export const getProductByIDUsecase = async (id) => {
 
-    const product = await getProductByIDRepo(id);
-    
-    if(!product) {
-        throw new Error(`Item not Found`);
-    };
+    if(!id){
+        throw new Error(`Invalid Id`);
+    }
+
+    await getProductByIDRepo(id);
 
     return product;
 };
