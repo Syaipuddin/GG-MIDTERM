@@ -10,7 +10,7 @@
 
 ## API Documentation
 
-    The Documentation can be accessed [Here](https://gist.github.com/Syaipuddin/6d74588ce2127e73674148c3b412c4b3)
+    The Documentation can be accessed [Here] (https://gist.github.com/Syaipuddin/6d74588ce2127e73674148c3b412c4b3)
 
 ## Database Structure
 
