@@ -10,28 +10,34 @@ import {
 } from '../repo/videos/video.js';
 
 export const getVideosUsecase = async () => {
+    try {
 
-    const videos = await getVideosRepo();
+        const videos = await getVideosRepo();
 
-    videos.map((e) => 
-        { 
-            // EXTRACT ID FROM YT LINKS
-            const match = e.url.match(/^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/);
-            // IF THE MATCH LENGT 7 RETURN THE RESULT
-            const matchId =  (match&&match[7]) ? match[7] : (()=> {throw new Error(`Video ID not found`)});
-            const ytId = `https://img.youtube.com/vi/${matchId}/0.jpg`;
+        videos.map((e) => 
+            { 
+                // EXTRACT ID FROM YT LINKS
+                const match = e.url.match(/^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/);
+                // IF THE MATCH LENGT 7 RETURN THE RESULT
+                const matchId =  (match&&match[7]) ? match[7] : (()=> {throw new Error(`Video ID not found`)});
+                const ytId = `https://img.youtube.com/vi/${matchId}/0.jpg`;
 
-            return e.thumb = ytId;
-        });
+                return e.thumb = ytId;
+            });
 
-    return videos;
+        return videos;
+    } catch(err) {
+
+        throw new Error(`Video Not Found!`)
+    }
+    
 
 };
 
 export const getVideoByIDUsecase = async (id) => {
 
     if(!id) {
-        throw new Error(`ID tidak Valid!`);
+        throw new Error(`Invalid ID!`);
     }
     
     try {
@@ -39,7 +45,7 @@ export const getVideoByIDUsecase = async (id) => {
         const video =  await getVideoByIDRepo(id);
 
         if(!video){
-            throw new Error(`Video tidak ditemukan`);
+            throw new Error(`Video not Found`);
         }
 
         return video;
@@ -54,14 +60,14 @@ export const getVideoByIDUsecase = async (id) => {
 export const addVideoUsecase = (title, url) => {
 
     if(!title || !url) {
-        throw new Error(`Title atau Url tidak Valid!`);
+        throw new Error(`Invalid title or Url!`);
     };
 
     const ytUrl = url.match(/^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|live\/|v\/)?)([\w\-]+)(\S+)?$/);
 
     // LINK VALIDATION
     if(!ytUrl) {
-        throw new Error(`URL harus menuju ke Youtube!`)
+        throw new Error(`URL Must be Youtube Link!`)
     }
 
     return addVideoRepo(title, url);
@@ -83,9 +89,9 @@ export const deleteProductFromVideoUsecase = async (videoId, productId) => {
 export const updateVideoUsecase = (id, title, url) => {
 
     if(!id) {
-        throw new Error(`Mohon Masukkan ID!`)
+        throw new Error(`Invalid ID!`);
     } else if (!title && !url) {
-        throw new Error(`Body Tidak Lengkap!`)
+        throw new Error(`Incomplete Body!`);
     }
 
   
@@ -93,7 +99,7 @@ export const updateVideoUsecase = (id, title, url) => {
         const ytUrl = url.match(/^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|live\/|v\/)?)([\w\-]+)(\S+)?$/);
 
         if(!ytUrl) {
-            throw new Error(`URL harus menuju Ke Youtube!`)
+            throw new Error(`URL Must be Youtube Link!`);
         }
 
          return updateVideoRepo(id, title, url);
@@ -110,7 +116,7 @@ export const updateVideoUsecase = (id, title, url) => {
 export const deleteVideoUsecase = (id) => {
     
     if(!id) {
-        throw new Error(`ID tidak Valid!`);
+        throw new Error(`Invalid ID!`);
     }
 
     return deleteVideoRepo(id)

@@ -72,7 +72,7 @@ export const updateProduct = async (req, res) => {
         await updateProductUsecase(id, title, price, url, req.file);
 
         res.json({
-            message : `item dengan id ${id} telah diupdate`,
+            message : `updated item with id ${id}`,
         });
     } catch (err) {
 
@@ -91,7 +91,7 @@ export const deleteProduct = async (req, res) => {
         await deleteProductUsecase(id);
 
         res.json({
-            message :  `item dengan id ${id} telah dihapus`,
+            message :  `deleted item with id ${id}`,
         });
     } catch(err) {
 

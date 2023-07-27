@@ -5,7 +5,6 @@ import {
     updateProductRepo,
     deleteProductRepo,
 } from '../repo/products/product.js';
-import { getVideoByIDRepo } from '../repo/videos/video.js';
 
 import {v2 as cloudinary} from 'cloudinary';
 
@@ -20,7 +19,7 @@ export const getProductByIDUsecase = async (id) => {
     const product = await getProductByIDRepo(id);
     
     if(!product) {
-        throw new Error(`Item tidak ditemukan`);
+        throw new Error(`Item not Found`);
     };
 
     return product;
@@ -29,7 +28,7 @@ export const getProductByIDUsecase = async (id) => {
 export const addProductUsecase = async (title, price, url, image) => {
 
     if(!title|| !price || !url || !image){
-        throw new Error(`Body tidak lengkap!`);
+        throw new Error(`Incomplete Body!`);
     };
 
     try {
@@ -48,7 +47,7 @@ export const addProductUsecase = async (title, price, url, image) => {
 export const updateProductUsecase = async (id, title, price, url, image) => {
 
     if(!title && !price && !image) {
-        throw new Error(`Masukkan Body untuk Update!`);
+        throw new Error(`Invalid Body!`);
     };
 
     if(!image) {
@@ -64,7 +63,7 @@ export const updateProductUsecase = async (id, title, price, url, image) => {
 export const deleteProductUsecase = (id) => {
 
     if(!id) {
-        throw new Error(`Please Input a valid Id`);
+        throw new Error(`Invalid Id`);
     };
 
     return deleteProductRepo(id);

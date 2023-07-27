@@ -70,7 +70,7 @@ export const addProductToVideo = async (req, res) => {
         await addProductToVideoUsecase(videoId, productId);
 
         res.status(201).json({
-            message : `Berhasil menambahkan Produk ${productId} ke Video ${videoId}`
+            message : `Successfully adding item ${productId} to Video ${videoId}`
         });
     } catch(err) {
 
@@ -88,7 +88,7 @@ export const deleteProductFromVideo = async (req, res) => {
         await deleteProductFromVideoUsecase(videoId, productId);
 
         res.status(201).json({
-            message : `berhasil menghapus item ${productId} dari video ${videoId}`
+            message : `Successfully deleted item ${productId} from video ${videoId}`
         });
 
     } catch(err) {
@@ -107,8 +107,8 @@ export const updateVideo = async (req, res) => {
 
         await updateVideoUsecase(id, title, url);
 
-        res.json({
-            message : `item dengan id ${id} telah diupdate`,
+        res.status(201).json({
+            message : `updated item with id ${id}`,
         });
 
     } catch(err) {
@@ -127,7 +127,7 @@ export const deleteVideo = async (req, res) => {
         await deleteVideoUsecase(id);
 
         res.json({
-            message : `item dengan id ${id} telah berhasil dihapus`
+            message : `deleted item with id ${id}`
         });
     } catch(err) {
 

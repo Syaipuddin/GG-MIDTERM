@@ -51,7 +51,7 @@ export const addComment = async (req, res) => {
         await addCommentUsecase(videoId, username, comment);
 
         res.json({
-            mesage : `Berhasil menambahkan Comment`
+            mesage : `Successfully adding Comment`
         });
     } catch(err) {
 
@@ -70,7 +70,7 @@ export const updateComment = async (req, res) => {
         await updateCommentUsecase(id, username, comment);
 
         res.json({
-            message : `item dengan id ${id} telah diupdate`,
+            message : `item with id ${id} has updated`,
         });
 
     } catch(err) {
@@ -90,7 +90,7 @@ export const deleteComment = async (req, res) => {
         await deleteCommentUsecase(id);
 
         res.json({
-            message : `Item dengan id ${id} telah dihapus`
+            message : `Item with id ${id} has deleted`
         });
     } catch(err) {
 

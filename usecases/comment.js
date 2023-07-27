@@ -24,7 +24,7 @@ export const getCommentByIDUsecase = async (id) => {
         const comment = await getCommentByIDRepo(id);
 
         if(!comment) {
-            throw new Error(`Komen tidak ditemukan`);
+            throw new Error(`Comment not found!`);
         }
 
         return comment;
@@ -38,9 +38,9 @@ export const getCommentByIDUsecase = async (id) => {
 export const addCommentUsecase = async (videoId, username, comment) => {
 
     if(!videoId) {
-        throw new Error(`Mohon masukkan video id!`);
+        throw new Error(`Invalid ID!`);
     } else if (!comment || !username) {
-        throw new Error(`Body tidak lengkap!`);
+        throw new Error(`Invalid Body!`);
     }
 
     try {
@@ -66,9 +66,9 @@ export const addCommentUsecase = async (videoId, username, comment) => {
 export const updateCommentUsecase = async (id, username, comment) => {
 
     if(!id) {
-        throw new Error(`Mohon masukkan ID yang valid`);
+        throw new Error(`Invalid ID`);
     } else if (!username && !comment) {
-        throw new Error(`Body tidak lengkap!`);
+        throw new Error(`Invalid Body!`);
     };
 
     try {
@@ -84,7 +84,7 @@ export const updateCommentUsecase = async (id, username, comment) => {
 export const deleteCommentUsecase = (id) => {
 
     if(!id) {
-        throw new Error(`Mohon masukkan ID`);
+        throw new Error(`Invalid ID`);
     }
 
     return deleteCommentRepo(id);
