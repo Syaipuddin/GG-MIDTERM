@@ -30,43 +30,43 @@ The Image above shows relation between Video with Products and Comments, each Vi
 
 ### Videos
 
-**GET /videos**
+#### **GET /videos**
 
 ![getVideos](./md-images/API%20STRUCTURE/video/getVideos.png)
 
 return all videos
 
-**GET /video/:id**
+#### **GET /video/:id**
 
 ![getVideoById](./md-images/API%20STRUCTURE/video/getVideoById.png)
 
 Get video by ID, Populate Products, and Comments key then returns it.
 
-**POST /video/add**
+#### **POST /video/add**
 
 ![addVideo](./md-images/API%20STRUCTURE/video/addVideo.png)
 
 Adding Video to Database, but validate the body first.
 
-**PATCH /video/add-product/:videoId/:productId**
+#### **PATCH /video/add-product/:videoId/:productId**
 
 ![addProduct2Video](./md-images/API%20STRUCTURE/video/addProduct2Video.png)
 
 Adding single Product._id to `video.products`
 
-**PATCH /video/update/:id**
+#### **PATCH /video/update/:id**
 
 ![updateVideo](./md-images/API%20STRUCTURE/video/updateVideo.png)
 
 Update Single Video Document, but Validate First
 
-**DELETE /video/delete-product/:videoId/:productId**
+#### **DELETE /video/delete-product/:videoId/:productId**
 
 ![deleteProductFromVideo](./md-images/API%20STRUCTURE/video/deleteProductFromVideo.png)
 
 Delete Single Product Id from `video.products`
 
-**DELETE /video/delete/:id**
+#### **DELETE /video/delete/:id**
 
 ![deleteVideo](./md-images/API%20STRUCTURE/video/deleteVideo.png)
 
@@ -74,64 +74,63 @@ Delete Single Video from Database based on it's id
 
 ### Products
 
-**GET /products**
+#### **GET /products**
 
 ![getProducts](./md-images//API%20STRUCTURE/product/getProducts.png)
 
 Returns all Producst
 
-**GET /product/:id**
+#### **GET /product/:id**
 
 ![getProductById](./md-images/API%20STRUCTURE/product/getProductById.png)
 
 Return a Single Product
 
-**POST /product/add**
+#### **POST /product/add**
 
 ![addProduct](./md-images/API%20STRUCTURE/product/addProduct.png)
 
 Validating Product Body, upload req.file (image) to cloudinary, return its url to Body and Post Body to Database
 
-**PATCH /product/update/:id**
+#### **PATCH /product/update/:id**
 
 ![updateProduct](./md-images/API%20STRUCTURE/product/updateProduct.png)
 
 Validating Product ID, finds and updates image (if exist) and update the body
 
-**DELETE /product/delete/:id**
+#### **DELETE /product/delete/:id**
 
 ![deleteProduct](./md-images//API%20STRUCTURE/product/deleteProduct.png)
 
 Delete a Single productId from videos (if exist) and Delete the Product, or just delete the Product
 
-
 ### Comments
 
-**GET /comments**
+#### **GET /comments**
 
 ![getComments](./md-images/API%20STRUCTURE/comment/getComments.png)
 
 Return all Comments From Database
 
-**GET /comment/:id**
+#### **GET /comment/:id**
 
 ![getCommentsById](./md-images/API%20STRUCTURE/comment/getCommentById.png)
 
 Return single Document based on its Id.
 
-**POST /comment/add**
+#### **POST /comment/add**
 
 ![addComment](./md-images/API%20STRUCTURE/comment/addComment.png)
 
 Create a single Comment and push its id to a `video.comments`
 
-**PATCH /comment/update/:id**
+#### **PATCH /comment/update/:id**
 
 ![updateComment](./md-images/API%20STRUCTURE/comment/updateComment.png)
 
 Update single Comment based on its id
 
-**DELETE /comment/delete/:id**
+#### **DELETE /comment/delete/:id**
 
 ![deleteComment](./md-images/API%20STRUCTURE/comment/deleteComment.png)
 
