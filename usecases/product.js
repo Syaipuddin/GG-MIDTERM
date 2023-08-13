@@ -5,6 +5,7 @@ import {
     updateProductRepo,
     deleteProductRepo,
 } from '../repo/products/product.js';
+import streamifier from 'streamifier';
 
 import {v2 as cloudinary} from 'cloudinary';
 
@@ -33,9 +34,23 @@ export const addProductUsecase = async (title, price, url, image) => {
 
     try {
 
-        const upload = await cloudinary.uploader.upload(image.path);
-
-        return addProductRepo(title, price, url, upload.secure_url);
+        const upload = (req) => {
+            return new Promise((resolve, reject) => {
+                let stream = cloudinary.uploader.upload_stream(
+                  (error, result) => {
+                    if (result) {
+                      resolve(result);
+                    } else {
+                      reject(error);
+                    }
+                  }
+                );
+    
+              streamifier.createReadStream(req).pipe(stream);
+            });
+        }
+        const imageData = await upload(image);
+        return addProductRepo(title, price, url, imageData.secure_url);
 
     } catch(err ) {
 

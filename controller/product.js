@@ -48,7 +48,9 @@ export const addProduct = async (req, res, next) => {
         const {title, price, url} = req.body;
 
 
-        const response = await addProductUsecase(title, price, url, req.file); 
+        const response = await addProductUsecase(title, price, url, req.file.buffer); 
+
+        
 
         res.json({
             data : response,
