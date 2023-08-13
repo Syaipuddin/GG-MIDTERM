@@ -42,6 +42,7 @@ export const addProductUsecase = async (title, price, url, image) => {
                       resolve(result);
                     } else {
                       reject(error);
+                      throw new Error(error);
                     }
                   }
                 );
