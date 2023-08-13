@@ -53,9 +53,9 @@ export const addProductUsecase = async (title, price, url, image) => {
         const imageData = await upload(image);
         return addProductRepo(title, price, url, imageData.secure_url);
 
-    } catch(err ) {
+    } catch(err) {
 
-        throw new Error(err.message);
+        throw new Error(err);
     };
 
 };
