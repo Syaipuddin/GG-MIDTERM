@@ -29,11 +29,13 @@ export const rest = () => {
             console.log(`Database Connected`);
 
             app.use(express.json());
-            app.use('/', (req, res) => {
+            app.use(appRoutes);
+            app.get('/', (req, res) => {
                 res.send('Check the docs on Repo!')
             })
-            app.use(appRoutes);
-
+            app.get('*', (req, res) => {
+                res.send('Route not Found!')
+            })
             app.listen(PORT, () => {
                 console.log(`App running on Port = ${PORT}`)
             })
