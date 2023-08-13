@@ -29,8 +29,8 @@ export const rest = () => {
             console.log(`Database Connected`);
 
             app.use(express.json());
-            app.use('/', () => {
-                rest.send('Check the docs on Repo!')
+            app.use('/', (req, res) => {
+                res.send('Check the docs on Repo!')
             })
             app.use(appRoutes);
 
