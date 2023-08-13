@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors';
+// import serverless from 
 
 import appRoutes from '../route/routes.js';
 
@@ -52,4 +53,4 @@ export const rest = () => {
     }
 }
 
-export const handler = serverless(app);
+// export const handler = serverless(app);
