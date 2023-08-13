@@ -51,3 +51,5 @@ export const rest = () => {
         mongoose.connection.close();
     }
 }
+
+export const handler = serverless(app);
