@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import cors from 'cors';
 
 import appRoutes from '../route/routes.js';
 
@@ -29,12 +30,14 @@ export const rest = () => {
             console.log(`Database Connected`);
 
             app.use(express.json());
+            app.use(cors());
             app.use(appRoutes);
             app.get('/', (req, res) => {
                 res.send('Check the docs on Repo!')
             })
-            app.get('*', (req, res) => {
-                res.send('Route not Found!')
+            app.get('/:route', (req, res) => {
+                const {route} = req.params;
+                res.send(route);
             })
             app.listen(PORT, () => {
                 console.log(`App running on Port = ${PORT}`)
