@@ -1,7 +1,7 @@
 import { Product } from "../../models/productModel.js";
 import { deleteProductFromVideoRepo } from "../videos/video.js";
 
-export const addProductRepo = async (title, price, url, image) => {
+export const addProductRepo = async (title, price, url, description, image) => {
 
     try {
 
@@ -9,6 +9,7 @@ export const addProductRepo = async (title, price, url, image) => {
             title : title,
             price : price,
             url : url,
+            description : description,
             image : image,
             createdAt : Date.now()
         });

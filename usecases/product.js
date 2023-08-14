@@ -26,7 +26,7 @@ export const getProductByIDUsecase = async (id) => {
     return product;
 };
 
-export const addProductUsecase = async (title, price, url, image) => {
+export const addProductUsecase = async (title, price, url, description, image) => {
 
     if(!title|| !price || !url || !image){
         throw new Error(`Incomplete Body!`);
@@ -51,7 +51,7 @@ export const addProductUsecase = async (title, price, url, image) => {
             });
         }
         const imageData = await upload(image);
-        return addProductRepo(title, price, url, imageData.secure_url);
+        return addProductRepo(title, price, url, description, imageData.secure_url);
 
     } catch(err) {
 

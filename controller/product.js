@@ -45,10 +45,10 @@ export const getProductByID = async (req, res) => {
 export const addProduct = async (req, res, next) => {
 
     try {
-        const {title, price, url} = req.body;
+        const {title, price, url, description} = req.body;
 
 
-        const response = await addProductUsecase(title, price, url, req.file.buffer); 
+        const response = await addProductUsecase(title, price, url, description, req.file.buffer); 
 
         
 

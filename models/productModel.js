@@ -21,6 +21,10 @@ const productSchema = new Schema({
         required : true,
         type : String
     },
+    description : {
+        required : true,
+        type : String
+    },
     createdAt : {
         required : true,
         type : Date
