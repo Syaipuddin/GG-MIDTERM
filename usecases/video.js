@@ -53,7 +53,7 @@ export const getVideoByIDUsecase = async (id) => {
             throw new Error(`Video not Found`);
         }
 
-        return video;
+        return {...video, ytId};
 
     } catch(err) {
         
