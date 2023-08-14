@@ -22,7 +22,7 @@ export const getVideosUsecase = async () => {
                 const matchId =  (match&&match[7]) ? match[7] : (()=> {throw new Error(`Video ID not found`)});
                 const ytId = `https://img.youtube.com/vi/${matchId}/0.jpg`;
 
-                return e.thumb = ytId;
+               return e.thumb = ytId, e.youtubeId = ytId;
             });
 
         return videos;
