@@ -21,6 +21,9 @@ const videoSchema = new Schema({
     thumb : {
         type : String
     },
+    ytId : {
+        tyoe : String
+    },
     url : {
         required : true,
         type: String
