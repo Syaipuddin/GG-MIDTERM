@@ -22,7 +22,7 @@ export const getVideosUsecase = async () => {
                 const matchId =  (match&&match[7]) ? match[7] : (()=> {throw new Error(`Video ID not found`)});
                 const ytId = `https://img.youtube.com/vi/${matchId}/0.jpg`;
 
-               return e.thumb = ytId, e.youtubeId = ytId;
+               return e.thumb = ytId;
             });
 
         return videos;
@@ -43,6 +43,11 @@ export const getVideoByIDUsecase = async (id) => {
     try {
 
         const video =  await getVideoByIDRepo(id);
+        // EXTRACT ID FROM YT LINKS
+        const match = video.url.match(/^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/);
+        // IF THE MATCH LENGT 7 RETURN THE RESULT
+        const matchId =  (match&&match[7]) ? match[7] : (()=> {throw new Error(`Video ID not found`)});
+        video.ytId = matchId;
 
         if(!video){
             throw new Error(`Video not Found`);
