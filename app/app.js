@@ -36,10 +36,7 @@ export const rest = () => {
             app.get('/', (req, res) => {
                 res.send('Check the docs on Repo!')
             })
-            app.get('/:route', (req, res) => {
-                const {route} = req.params;
-                res.send(route);
-            })
+
             app.listen(PORT, () => {
                 console.log(`App running on Port = ${PORT}`)
             })
