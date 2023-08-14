@@ -47,13 +47,13 @@ export const getVideoByIDUsecase = async (id) => {
         const match = video.url.match(/^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/);
         // IF THE MATCH LENGT 7 RETURN THE RESULT
         const matchId =  (match&&match[7]) ? match[7] : (()=> {throw new Error(`Video ID not found`)});
-        video.ytId = matchId;
+        ytId = matchId;
 
         if(!video){
             throw new Error(`Video not Found`);
         }
 
-        return video;
+        return {...video.toJSON(), ytId};
 
     } catch(err) {
         
